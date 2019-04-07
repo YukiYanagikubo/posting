@@ -7,7 +7,12 @@ class App extends Component {
     super(props);
     this.state = {
       imgSrc: null,
+      userId: 1,
+      text: null,
     }
+    // this.onChange = this.onChange.bind(this);
+    this.changeText = this.changeText.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   onChange(e){
@@ -18,16 +23,22 @@ class App extends Component {
   
      reader.onloadend = function (e) {
         this.setState({
-            imgSrc: e.target.result,
-            text: null,
+            imgSrc: e.target.result
         })
       }.bind(this);
-    console.log(url) // Would see a path?
-    // TODO: concat files
+
+  }
+
+  changeText(e){
+    this.setState({text: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log("params");
+    console.log(this.state.text);
+    console.log(this.state.imgSrc);
+    console.log(this.state.userId);
 
     // TODO: サーバにデータを送信
   }
@@ -36,16 +47,16 @@ class App extends Component {
     return (
       <div className="post">
         <img src={this.state.imgSrc} />
-        <form>
+        <form >
           <input 
             className="image"
             ref="file" 
             type="file" 
             name="user[image]" 
             onChange={this.onChange.bind(this)}/>
-            <textarea className="text" rows="10" cols="50" onChange={(e)=>this.changeText(e)} defaultValue={this.state.text}/>
+            <textarea className="text" rows="10" cols="50" onChange={this.changeText} defaultValue={this.state.text}/>
             <div className="submit1">
-              <input type="submit" name="button1" value="投稿"></input>
+              <input type="submit" name="button1" value="投稿" onClick={this.handleSubmit}></input>
             </div>
         </form>
     </div>
