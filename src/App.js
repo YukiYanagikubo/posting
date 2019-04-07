@@ -25,7 +25,6 @@ class App extends Component {
             imgSrc: e.target.result
         })
       }.bind(this);
-
   }
 
   changeText(e){
