@@ -46,16 +46,16 @@ class App extends Component {
     return (
       <div className="post">
         <img src={this.state.imgSrc} />
-        <form >
+        <form onSubmit={this.handleSubmit}>
           <input 
             className="image"
             ref="file" 
             type="file" 
             name="user[image]" 
             onChange={this.onChange.bind(this)}/>
-            <textarea className="text" rows="10" cols="50" onChange={this.changeText} defaultValue={this.state.text}/>
+            <textarea className="text" rows="10" cols="50" onChange={this.changeText} defaultValue={this.state.text} placeholder="説明"/>
             <div className="submit1">
-              <input type="submit" name="button1" value="投稿" onClick={this.handleSubmit}></input>
+              <input type="submit" name="button1" value="投稿" ></input>
             </div>
         </form>
     </div>
